@@ -4,6 +4,10 @@ import resolve from '@rollup/plugin-node-resolve';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
+import replace from '@rollup/plugin-replace';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -37,6 +41,11 @@ export default {
 		file: 'public/build/bundle.js'
 	},
 	plugins: [
+		replace({
+			GOOGLE_CLIENT_EMAIL: JSON.stringify(process.env.GOOGLE_CLIENT_EMAIL),
+			GOOGLE_PRIVATE_KEY: JSON.stringify(process.env.GOOGLE_PRIVATE_KEY),
+			GOOGLE_SHEET_ID: JSON.stringify(process.env.GOOGLE_SHEET_ID)
+		}),
 		svelte({
 			compilerOptions: {
 				// enable run-time checks when not in production
