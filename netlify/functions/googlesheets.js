@@ -6,7 +6,7 @@ exports.handler = async (event, context, callback) => {
         const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
         await doc.useServiceAccountAuth({
             client_email: process.env.GOOGLE_CLIENT_EMAIL,
-            private_key: private_key_string
+            private_key: private_key_string.replace(/\\n/g, "\n")
         });
         await doc.loadInfo()
         // careful, api automatically uses first row as header
