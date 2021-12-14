@@ -1,6 +1,4 @@
 <script>
-	export let name;
-
 	const fetchSpreadsheetData = (async () => {
 		const response = await fetch(`/.netlify/functions/googlesheets`);
 		let data = await response.json();
@@ -16,8 +14,12 @@
 	})();
 </script>
 
+<svelte:head>
+	<title>FemOS Timeline</title>
+</svelte:head>
+
 <main>
-	<h1>Hello {name}!</h1>
+	<h1>Open Source: a timeline</h1>
 	{#await fetchSpreadsheetData}
 		<p>... fetching spreadsheet data ...</p>
 	{:then data}
@@ -27,9 +29,9 @@
 					"Timeline entry title"
 				]}
 			</h2>
-			<div>
+			<h3>
 				{item["Description (optional)"]}
-			</div>
+			</h3>
 			<br />
 		{/each}
 	{:catch error}
@@ -45,7 +47,7 @@
 	}
 
 	h1 {
-		color: #ff3e00;
+		color: rgb(218, 7, 7);
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
@@ -53,6 +55,12 @@
 
 	h2 {
 		color: rgb(218, 7, 7);
+		font-weight: 150;
+	}
+
+	h3 {
+		color: rgb(141 141 141);
+		font-weight: 150;
 	}
 
 	@media (min-width: 640px) {
