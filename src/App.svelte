@@ -51,7 +51,7 @@
 		font-weight: 100;
 	}
 
-	li {
+	h2 {
 		color: rgb(218, 7, 7);
 	}
 
