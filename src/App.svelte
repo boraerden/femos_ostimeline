@@ -43,6 +43,7 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
+		pointer-events: none;
 	}
 
 	@media (min-width: 640px) {
