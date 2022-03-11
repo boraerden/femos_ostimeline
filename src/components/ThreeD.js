@@ -1,13 +1,6 @@
-import ReactDOM from "react-dom";
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import {
-	useGLTF,
-	Html,
-	OrbitControls,
-	Environment,
-	ContactShadows,
-} from "@react-three/drei";
+import React, { useRef } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 import Datum from "./Datum";
 
 function ThreeD(props) {
