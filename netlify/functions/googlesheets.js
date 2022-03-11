@@ -25,7 +25,6 @@ exports.handler = async (event, context, callback) => {
 				item[headerValue] = sheet_datum[headerValue];
 			});
 			items.push(item);
-			console.log(item);
 		});
 
 		return {

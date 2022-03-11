@@ -8,19 +8,16 @@ function App() {
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await fetch(`/.netlify/functions/googlesheets`);
-			// const response = await fetch(
-			// 	`https://jsonplaceholder.typicode.com/todos/1`
-			// );
 			let data = await response.json();
-			console.log(data);
-			data.items.forEach((item) => {
+			data.items.forEach((item, i) => {
+				item.id = i;
 				item.DatetimeObject = new Date(item["Date \n(formated DD Month YYYY)"]);
 			});
 			data.items.sort(function (a, b) {
 				return a.DatetimeObject - b.DatetimeObject;
 			});
 
-			setItems(data);
+			setItems(data.items);
 		};
 
 		fetchData();
@@ -34,7 +31,7 @@ function App() {
 			<ThreeD />
 			<ul>
 				{items.map((item) => (
-					<li key={item.DatetimeObject}>{item.title}</li>
+					<li key={item.id}>{item["Timeline entry title"]}</li>
 				))}
 			</ul>
 		</div>
