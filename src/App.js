@@ -28,12 +28,9 @@ function App() {
 			<header className="App-header">
 				<h1>FemOS Timeline</h1>
 			</header>
-			<ThreeD />
-			<ul>
-				{items.map((item) => (
-					<li key={item.id}>{item["Timeline entry title"]}</li>
-				))}
-			</ul>
+			<div id="threed">
+				<ThreeD items={items} />
+			</div>
 		</div>
 	);
 }
