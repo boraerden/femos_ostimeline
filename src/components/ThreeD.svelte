@@ -5,14 +5,14 @@
 
 	export let data;
 
-	$: console.log(data);
-
 	const hdrEquirect = new THREE.TextureLoader().load(
 		"constellation_figures.jpg",
 		() => {
 			hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
 		}
 	);
+
+	const font = new FontLoader().load("optimer_regular.typeface.json");
 </script>
 
 <div id="threed_container">
