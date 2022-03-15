@@ -1,20 +1,30 @@
 import React, { useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { Backdrop, Line, OrbitControls } from "@react-three/drei";
 import Datum from "./Datum";
 
 function ThreeD(props) {
-	const ref = useRef();
+	const orbitRef = useRef();
 	return (
-		<Canvas>
+		<Canvas camera={{ fov: 75, position: [50, 20, 20] }}>
+			<color attach="background" args={["#222222"]} />
+
+			<OrbitControls ref={orbitRef} />
 			<ambientLight />
 			<pointLight position={[10, 10, 10]} />
 			{props.items
-				.filter((item) => item.DatetimeObject !== "Invalid date")
+				.filter((item) => !isNaN(item.DatetimeObject.getTime()))
 				.map((item) => (
 					<Datum key={item.id} item={item} />
 				))}
-			<OrbitControls ref={ref} />
+			<Line
+				points={[
+					[-100000, 0, 0],
+					[1000000, 0, 0],
+				]}
+				color="red"
+				lineWidth={0.4}
+			/>
 		</Canvas>
 	);
 }
